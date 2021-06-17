@@ -1,0 +1,10 @@
+<h1>Today's weather in {{name}}</h1>
+<ul>
+    {{#each data}}
+        <li>{{@key}} : {{this}}</li>
+    {{/each}}
+</ul>
+<br>
+<p><a class="btn-style" href="/weather">What's the weather?</a></p>
+<br>
+<p>Sunrise - {{sunrise}} </p><p>Sunset - {{sunset}}</p>
