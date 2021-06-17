@@ -20,19 +20,19 @@ router.post("/", async (req, res) => {
     });
     return;
   }
-  console.log(data.weather[0].description)
-  console.log(data.main.temp)
+  // console.log(data.weather[0].description)
+  // console.log(data.main.temp)
 
   let name = data.name;
-  let description = false;
-  req.body.descriptioncb ? description = data.weather[0].description : description;
-  let temp = false;
-  req.body.temperaturecb ? temp = data.main.temp + " \xB0c" : temp;
-  let feels_like = false;
-  req.body.feels_likecb ? feels_like = data.main.feels_like: feels_like;
 
-  let sunrise = new Date(data.sys.sunrise * 1000);  
-  let sunset = new Date(data.sys.sunset * 1000);
+  const description = req.body.descriptioncb ? data.weather[0].description : false;
+  // let description = false;
+  // req.body.descriptioncb ? description = data.weather[0].description : description;
+  const temp = req.body.temperaturecb? data.main.temp + " \xB0c" : false;
+  const feels_like = req.body.feels_likecb ?  data.main.feels_like: false;
+
+  const sunrise = new Date(data.sys.sunrise * 1000);  
+  const sunset = new Date(data.sys.sunset * 1000);
 
   let sunrisesunsetcb = false
   req.body.sunrisesunsetcb ? sunrisesunsetcb = true: sunrisesunsetcb = false;
