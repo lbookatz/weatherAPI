@@ -37,8 +37,6 @@ app.get("/", async (req, res) => {
 
 res.render('index', {name, data: {description, temp, feels_like},sunrise,sunset});
 
-
-
 //   let timesunset = data.sys.sunset;
 //   let datesunset = new Date(timesunset)  
 //   let sunset = datesunset.toString();
@@ -61,8 +59,30 @@ app.get("/weather", (req, res) => {
   res.render("weather");
 });
 
-app.post("/weather", (req,res) =>{
+app.post("/weather", async (req,res) =>{
   console.log(req.body);
+  let location = req.body.location;
+  let countryCode = req.body.countryCode;
+  let data = await getWeather(location,countryCode);
+
+  if (data.cod == '404') {
+    res.render('weather', {
+    err:'The provided location doesn\'t exist'
+    });
+    return;
+    }
+  
+
+  let name = data.name;
+  let description = data.weather[0].description;
+  let temp = data.main.temp + " \xB0c";
+  let feels_like = data.main.feels_like;
+
+  let sunrise  = new Date(data.sys.sunrise * 1000)  
+  let sunset  = new Date(data.sys.sunset * 1000)  
+
+  res.render('index', {name, data: {description, temp, feels_like},sunrise,sunset,listExists: true});
+
   // res.status(200).json(req.body);
   res.render('weather');
 })
