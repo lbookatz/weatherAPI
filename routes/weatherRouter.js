@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     sunrisesunsetcb,
     sunrise,
     sunset,
-    listExists: true,
+    displayWeather: true,
   });
 
 });
