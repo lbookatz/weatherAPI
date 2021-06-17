@@ -1,7 +1,9 @@
-<h1>Today's weather in {{name}}</h1>
+<h1>index Today's weather in {{name}}</h1>
 <ul>
     {{#each data}}
+    {{#if this}}
         <li>{{@key}} : {{this}}</li>
+        {{/if}} 
     {{/each}}
 </ul>
 <br>
