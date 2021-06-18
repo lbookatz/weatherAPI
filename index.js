@@ -33,5 +33,5 @@ app.use('/weather', weatherRouter);
 app.use('*', errRouter);
 
 app.listen(process.env.PORT || 3000, () => {
-  console.log("listening on port 3000");
+  console.log("listening on port 3000 or online");
 });
