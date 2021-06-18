@@ -34,8 +34,7 @@ router.post("/", async (req, res) => {
   const sunrise = new Date(data.sys.sunrise * 1000);  
   const sunset = new Date(data.sys.sunset * 1000);
 
-  let sunrisesunsetcb = false
-  req.body.sunrisesunsetcb ? sunrisesunsetcb = true: sunrisesunsetcb = false;
+  const sunrisesunsetcb =  req.body.sunrisesunsetcb ? sunrisesunsetcb = true: sunrisesunsetcb = false;
 
   res.render("weather", {
     location,
